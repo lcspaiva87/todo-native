@@ -5,6 +5,7 @@ import { styled, } from 'nativewind';
 const StyledView = styled(View)
 const StyledText = styled(Text)
 export default function App() {
+    const [text, setText] = React.useState('Hello, world! 🌍')
   return (
     <StyledView className="flex-1 items-center justify-center">
     <StyledText className="text-slate-800">
