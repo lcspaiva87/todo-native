@@ -24,6 +24,7 @@
   "devDependencies": {
     "@babel/core": "^7.20.0",
     "@react-native-community/eslint-config": "^3.2.0",
+    "@rocketseat/eslint-config": "^2.2.2",
     "@types/react": "~18.2.45",
     "@typescript-eslint/eslint-plugin": "^7.4.0",
     "@typescript-eslint/parser": "^7.4.0",
