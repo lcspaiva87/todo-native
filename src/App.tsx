@@ -1,12 +1,10 @@
 import React from 'react'
 import { Text, View } from 'react-native'
-import { styled } from 'nativewind'
-const StyledView = styled(View)
-const StyledText = styled(Text)
+
 export default function App() {
   return (
-    <StyledView className="flex-items-center justify-center">
-      <StyledText className="text-slate-800">Try editing me! 🎉</StyledText>
-    </StyledView>
+    <View className="bg-gray-600 w-full h-full p-10">
+      <Text className="text-red-800">Try editing me! 🎉</Text>
+    </View>
   )
 }
