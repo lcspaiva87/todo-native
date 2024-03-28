@@ -3,7 +3,7 @@ import { Image, TextInput, View, Text } from 'react-native'
 
 export default function App() {
   return (
-    <View className="bg-gray-100 w-full h-full ">
+    <View className="bg-danger w-full h-full  ">
       <View className="bg-gray-700 p-4 flex items-center py-16">
         <Image source={require('../assets/Logo.png')} />
       </View>
