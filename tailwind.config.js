@@ -5,9 +5,9 @@ module.exports = {
   content: ['./src/**/*.tsx'],
   theme: {
     extend: {
-      backgroundColor: {
-        gray: {
-          100: '#F2F2F2',
+      colors: {
+        primary: {
+          100: '#4EA8DE',
           200: '#D9D9D9',
           300: '#808080',
           400: '#333333',
@@ -24,4 +24,9 @@ module.exports = {
     },
   },
   plugins: [],
+  safelist: [
+    'bg-danger',
+    'text-danger',
+    // Adicione outras classes relacionadas aqui, se necessário
+  ],
 }
