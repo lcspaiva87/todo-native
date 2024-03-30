@@ -31,7 +31,37 @@ export default function App() {
       setTask('')
       Alert.alert('Tarefa salvo com sucesso')
     } catch (error) {
+      Alert.alert(String(error))
       console.error(error)
+    }
+  }
+
+  const handCheckTask = async (id: number) => {
+    const tasks = listTask.map((task) => {
+      if (task.id === id) {
+        return { ...task, active: !task.active }
+      }
+      return task
+    })
+
+    try {
+      const jsonValue = JSON.stringify(tasks)
+      await AsyncStorage.setItem(STORAGE_KEY, jsonValue)
+      setListTask(tasks)
+    } catch (error) {
+      Alert.alert(String(error))
+    }
+  }
+
+  const handDeleteTask = async (id: number) => {
+    const tasks = listTask.filter((task) => task.id !== id)
+
+    try {
+      const jsonValue = JSON.stringify(tasks)
+      await AsyncStorage.setItem(STORAGE_KEY, jsonValue)
+      setListTask(tasks)
+    } catch (error) {
+      Alert.alert(String(error))
     }
   }
   useEffect(() => {
@@ -41,12 +71,12 @@ export default function App() {
         if (value !== null) {
           setListTask(JSON.parse(value))
         }
-      } catch (e) {
-        console.log(e)
+      } catch (error) {
+        Alert.alert(String(error))
       }
     }
     getTasks()
-  }, [])
+  }, [task])
   return (
     <View className="bg-primary-600 w-full h-full  ">
       <View className="bg-primary-700 p-4 flex items-center py-16">
@@ -90,7 +120,12 @@ export default function App() {
           <ScrollView>
             {listTask.map((task) => (
               <View style={{ marginBottom: 2, marginTop: 10 }} key={task.id}>
-                <TaskCard name={String(task.name)} />
+                <TaskCard
+                  name={String(task.name)}
+                  active={task.active}
+                  handCheckTask={() => handCheckTask(task.id)}
+                  handDeleteTask={() => handDeleteTask(task.id)}
+                />
               </View>
             ))}
           </ScrollView>

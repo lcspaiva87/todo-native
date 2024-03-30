@@ -1,7 +1,12 @@
 import { View, TouchableOpacity, Text, Image } from 'react-native'
 import BouncyCheckbox from 'react-native-bouncy-checkbox'
 
-export const TaskCard: React.FC<{ name: string }> = ({ name }) => {
+export const TaskCard: React.FC<{
+  name: string
+  active: boolean
+  handCheckTask: () => void
+  handDeleteTask: () => void
+}> = ({ name, active, handCheckTask, handDeleteTask }) => {
   return (
     <View className=" flex flex-row justify-between items-center bg-primary-500 pl-3 pr-4 py-3 rounded-lg  ">
       <View className="flex flex-row">
@@ -10,11 +15,16 @@ export const TaskCard: React.FC<{ name: string }> = ({ name }) => {
           fillColor="#8284FA"
           unfillColor="#262626"
           innerIconStyle={{ borderWidth: 2 }}
-          textStyle={{ fontFamily: 'JosefinSans-Regular' }}
+          onPress={handCheckTask}
+          isChecked={active}
         />
-        <Text className="text-white">{name}</Text>
+        <Text
+          className={`text-white ${active ? `line-through` : `no-underline`}`}
+        >
+          {name}
+        </Text>
       </View>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={handDeleteTask}>
         <Image source={require('../../assets/trash.png')} />
       </TouchableOpacity>
     </View>
