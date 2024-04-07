@@ -98,7 +98,7 @@ export default function App() {
         <Image source={require('../assets/Logo.png')} />
       </View>
 
-      <View className="flex flex-row items-center justify-center gap-1 -mt-10 ">
+      <View className="flex flex-row items-center justify-center gap-1 -mt-10 px-6 ">
         <TextInput
           value={task}
           onChangeText={(text) => setTask(text)}
@@ -114,7 +114,7 @@ export default function App() {
         </TouchableOpacity>
       </View>
       <View className="px-6">
-        <View className="flex justify-center flex-row items-center gap-36 py-8 ">
+        <View className="flex justify-between flex-row items-center py-8 px-2">
           <View className="flex justify-center flex-row gap-2 items-center">
             <Text className="text-blue text-sm font-bold">Criadas</Text>
             <Text className="text-white bg-primary-400 text-base rounded-full  px-2">
