@@ -108,7 +108,7 @@ export default function App() {
         />
         <TouchableOpacity
           onPressOut={addTask}
-          className="bg-blue-dark rounded-lg items-center w-14 h-14 flex justify-center"
+          className="bg-blue-dark rounded-lg items-center w-14 h-[60px] flex justify-center"
         >
           <Image source={require('../assets/plus.png')} />
         </TouchableOpacity>
@@ -132,32 +132,33 @@ export default function App() {
           </View>
         </View>
 
-        <View className="border-t border-primary-300 opacity-30" />
-
-        {listTask.length ? (
-          <ScrollView>
-            {listTask.map((task) => (
-              <View style={{ marginBottom: 2, marginTop: 10 }} key={task.id}>
-                <TaskCard
-                  name={String(task.name)}
-                  active={task.active}
-                  handCheckTask={() => handCheckTask(task.id)}
-                  handDeleteTask={() => handDeleteTask(task.id)}
-                />
-              </View>
-            ))}
-          </ScrollView>
-        ) : (
-          <View className="flex flex-col gap-2 mt-4 items-center">
-            <Image source={require('../assets/Clipboard.png')} />
-            <Text className="flex font-bold text-sm text-primary-400">
-              Você ainda não tem tarefas cadastradas
-            </Text>
-            <Text className="flex font-normal text-sm text-primary-400">
-              Crie tarefas e organize seus itens a fazer
-            </Text>
-          </View>
-        )}
+        <View className="px-2">
+          <View className="border-t border-primary-300 opacity-30" />
+          {listTask.length ? (
+            <ScrollView>
+              {listTask.map((task) => (
+                <View style={{ marginBottom: 2, marginTop: 10 }} key={task.id}>
+                  <TaskCard
+                    name={String(task.name)}
+                    active={task.active}
+                    handCheckTask={() => handCheckTask(task.id)}
+                    handDeleteTask={() => handDeleteTask(task.id)}
+                  />
+                </View>
+              ))}
+            </ScrollView>
+          ) : (
+            <View className="flex flex-col gap-2 mt-4 items-center">
+              <Image source={require('../assets/Clipboard.png')} />
+              <Text className="flex font-bold text-sm text-primary-400">
+                Você ainda não tem tarefas cadastradas
+              </Text>
+              <Text className="flex font-normal text-sm text-primary-400">
+                Crie tarefas e organize seus itens a fazer
+              </Text>
+            </View>
+          )}
+        </View>
       </View>
     </View>
   )
