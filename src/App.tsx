@@ -54,12 +54,27 @@ export default function App() {
   }
 
   const handDeleteTask = async (id: number) => {
-    const tasks = listTask.filter((task) => task.id !== id)
-
     try {
-      const jsonValue = JSON.stringify(tasks)
-      await AsyncStorage.setItem(STORAGE_KEY, jsonValue)
-      setListTask(tasks)
+      Alert.alert('Remover', 'Remover participante?', [
+        {
+          text: 'Sim',
+          onPress: async () => {
+            const tasks = listTask.filter((task) => task.id !== id)
+            try {
+              const jsonValue = JSON.stringify(tasks)
+              await AsyncStorage.setItem(STORAGE_KEY, jsonValue)
+              setListTask(tasks)
+              Alert.alert('Participante removido com sucesso')
+            } catch (error) {
+              Alert.alert(String(error))
+            }
+          },
+        },
+        {
+          text: 'Não',
+          style: 'cancel',
+        },
+      ])
     } catch (error) {
       Alert.alert(String(error))
     }
@@ -103,13 +118,16 @@ export default function App() {
           <View className="flex justify-center flex-row gap-2 items-center">
             <Text className="text-blue text-sm font-bold">Criadas</Text>
             <Text className="text-white bg-primary-400 text-base rounded-full  px-2">
-              0
+              {listTask.length}
             </Text>
           </View>
           <View className="flex justify-center flex-row gap-2 items-center">
             <Text className="text-purple text-sm font-bold">Concluídas</Text>
             <Text className="text-white bg-primary-400 text-base rounded-full  px-2">
-              0
+              {
+                listTask.map((task) => task.active).filter((task) => task)
+                  .length
+              }
             </Text>
           </View>
         </View>
